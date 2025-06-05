@@ -40,20 +40,22 @@ class Game:
 
     def load_assets(self):
         # graphics
-        self.player_frames = import_folder('images', 'player')
-        self.bullet_surf = import_image('images', 'gun', 'bullet')
-        self.fire_surf = import_image('images', 'gun', 'fire')
-        self.bee_frames = import_folder('images', 'enemies', 'bee')
-        self.worm_frames = import_folder('images', 'enemies', 'worm')
+        self.player_frames = import_folder('..', 'images', 'player')
+        self.bullet_surf = import_image('..', 'images', 'gun', 'bullet')
+        self.fire_surf = import_image('..', 'images', 'gun', 'fire')
+        self.bee_frames = import_folder('..', 'images', 'enemies', 'bee')
+        self.worm_frames = import_folder('..', 'images', 'enemies', 'worm')
 
         # sounds
-        self.audio = audio_importer('audio')
-
+        self.audio = audio_importer('..', 'audio')
+        print("Wczytane dźwięki:", list(self.audio.keys()))
 
     def setup(self):
         self.audio['music'].play(loops = -1).set_volume(0.2)
 
-        tmx_map = load_pygame(join('data', 'maps', 'mapa.tmx'))
+        base_dir = dirname(__file__)
+        tmx_path = join(base_dir, '..', 'data', 'maps', 'mapa.tmx')
+        tmx_map = load_pygame(tmx_path)
         self.level_width = tmx_map.width * TILE_SIZE
         self.level_height = tmx_map.height * TILE_SIZE
 
