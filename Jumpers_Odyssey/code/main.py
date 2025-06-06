@@ -48,7 +48,6 @@ class Game:
 
         # sounds
         self.audio = audio_importer('..', 'audio')
-        print("Wczytane dźwięki:", list(self.audio.keys()))
 
     def setup(self):
         self.audio['music'].play(loops = -1).set_volume(0.2)
